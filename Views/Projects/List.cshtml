@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    var Projects = ViewBag.Projects;
+}
+
+<h2>List</h2>
+<ul>
+    @{
+        foreach (var p in Projects) {
+    <li>
+        <strong style="color:green; font-size: 14px;">@p.Name</strong> - 
+        <a href="/Projects/Details/@p.Id">Project Details</a><br />
+        <strong style="font-size:10px;">Default Team:</strong> <span style="font-size:10px;">@p.DefaultTeam.Name</span><br />
+        <strong style="font-size:10px;">Description:</strong> <span style="font-size:10px;">@p.Description</span>
+    </li>
+        }
+    }
+</ul>

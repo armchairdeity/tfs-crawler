@@ -1,0 +1,168 @@
+﻿
+@{
+    var Project = ViewBag.Project;
+    var DefaultTeam = ViewBag.DefaultTeam;
+    var DTMembers = ViewBag.DTMembers;
+    var TFSGroups = ViewBag.TFSGroups;
+    var ProjectTeams = ViewBag.ProjectTeams;
+
+    ViewBag.Title = "Details: " + Project.Name;
+}
+<h1>Project: <small class="text-muted">@Project.Name</small></h1>
+<div class="container">
+        <div class="col"></div>
+        <div class="col-10 border-bottom border-primary">
+
+            <div class="row border-bottom border-primary">
+                <div class="col-12 mb-3">
+                    @Project.Description
+                </div>
+            </div>
+            <div class="row mt-3 border-bottom border-primary">
+                <div class="col-3">
+                    <strong class="text-success">
+                        Default Team Members
+                    </strong>
+                    <ul id="defaultTeam" class="small">
+                        <!-- Loop here to display Default Team Members -->
+                        @{
+                            // DTMembers.Sort();
+                            foreach (var m in DTMembers) {
+                                if (m.IsContainer) {
+                                    <li class="small text-success">@m.DisplayName</li>
+                                }
+                                else {
+                                    <li class="small">@m.DisplayName</li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <strong class="text-success">
+                        TFS Groups
+                    </strong>
+                    <ul id="tfsGroups" class="small">
+                        @{
+                            // DTMembers.Sort();
+                            foreach (var g in TFSGroups) {
+                                <li class="small">@g.DisplayName</li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <strong class="text-success">
+                        AD Groups
+                    </strong>
+                    <ul id="adGroups" class="small">
+                        @{
+                            // DTMembers.Sort();
+                            foreach (var m in DTMembers) {
+                                if (m.IsContainer) {
+                                    <li class="small">@m.DisplayName</li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <strong class="text-success">
+                        Project Teams
+                    </strong>
+                    <ul id="defaultTeam" class="small">
+                        <!-- Loop here to display Default Team Members -->
+                        @{
+                            foreach (var t in ProjectTeams) {
+                                <li class="small">@t.Name</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <ul class="nav nav-pills pt-3 pb-3 mb-3 border-bottom border-top" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-ad-tab" data-toggle="pill" href="#pills-ad" role="tab" aria-controls="pills-ad" aria-selected="true">AD Group Memberships</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-tfs-tab" data-toggle="pill" href="#pills-tfs" role="tab" aria-controls="pills-tfs" aria-selected="false">TFS Group Memeberships</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-dt-tab" data-toggle="pill" href="#pills-dt" role="tab" aria-controls="pills-dt" aria-selected="false">Default Team Group Memberships</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-ad" role="tabpanel" aria-labelledby="pills-ad-tab">
+                    <div class="row">
+                        <div class="col-3 border-right">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <!-- loop here to create AD group name PILLS -->
+                                <a class="nav-link active" id="v-pills-adg1-tab" data-toggle="pill" href="#v-pills-adg1" role="tab" aria-controls="v-pills-adg1" aria-selected="true">ad group 1</a>
+                                <a class="nav-link" id="v-pills-adg2-tab" data-toggle="pill" href="#v-pills-adg2" role="tab" aria-controls="v-pills-adg2" aria-selected="false">ad group 2</a>
+                                <a class="nav-link" id="v-pills-adg3-tab" data-toggle="pill" href="#v-pills-adg3" role="tab" aria-controls="v-pills-adg3" aria-selected="false">ad group 3</a>
+                                <a class="nav-link" id="v-pills-adg4-tab" data-toggle="pill" href="#v-pills-adg4" role="tab" aria-controls="v-pills-adg4" aria-selected="false">ad group 4</a>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <!-- loop here to create AD group list of users -->
+                                <div class="tab-pane fade show active" id="v-pills-adg1" role="tabpanel" aria-labelledby="v-pills-adg1-tab">ad group 1 details</div>
+                                <div class="tab-pane fade" id="v-pills-adg2" role="tabpanel" aria-labelledby="v-pills-adg2-tab">ad group 2 details</div>
+                                <div class="tab-pane fade" id="v-pills-adg3" role="tabpanel" aria-labelledby="v-pills-adg3-tab">ad group 3 details</div>
+                                <div class="tab-pane fade" id="v-pills-adg4" role="tabpanel" aria-labelledby="v-pills-adg4-tab">ad group 4 details</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-tfs" role="tabpanel" aria-labelledby="pills-tfs-tab">
+                    <div class="row">
+                        <div class="col-3 border-right">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <!-- loop here to create TFS group name PILLS -->
+                                <a class="nav-link active" id="v-pills-tfsg1-tab" data-toggle="pill" href="#v-pills-tfsg1" role="tab" aria-controls="v-pills-tfsg1" aria-selected="true">tfs group 1</a>
+                                <a class="nav-link" id="v-pills-tfsg2-tab" data-toggle="pill" href="#v-pills-tfsg2" role="tab" aria-controls="v-pills-tfsg2" aria-selected="false">tfs group 2</a>
+                                <a class="nav-link" id="v-pills-tfsg3-tab" data-toggle="pill" href="#v-pills-tfsg3" role="tab" aria-controls="v-pills-tfsg3" aria-selected="false">tfs group 3</a>
+                                <a class="nav-link" id="v-pills-tfsg4-tab" data-toggle="pill" href="#v-pills-tfsg4" role="tab" aria-controls="v-pills-tfsg4" aria-selected="false">tfs group 4</a>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <!-- loop here to create TFS group user lists -->
+                                <div class="tab-pane ftfse show active" id="v-pills-tfsg1" role="tabpanel" aria-labelledby="v-pills-tfsg1-tab">tfs group 1 details</div>
+                                <div class="tab-pane ftfse" id="v-pills-tfsg2" role="tabpanel" aria-labelledby="v-pills-tfsg2-tab">tfs group 2 details</div>
+                                <div class="tab-pane ftfse" id="v-pills-tfsg3" role="tabpanel" aria-labelledby="v-pills-tfsg3-tab">tfs group 3 details</div>
+                                <div class="tab-pane ftfse" id="v-pills-tfsg4" role="tabpanel" aria-labelledby="v-pills-tfsg4-tab">tfs group 4 details</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-dt" role="tabpanel" aria-labelledby="pills-dt-tab">
+                    <div class="row">
+                        <div class="col-3 border-right">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <!-- loop here to create default team name PILLS -->
+                                <a class="nav-link active" id="v-pills-dtg1-tab" data-toggle="pill" href="#v-pills-dtg1" role="tab" aria-controls="v-pills-dtg1" aria-selected="true">dt group 1</a>
+                                <a class="nav-link" id="v-pills-dtg2-tab" data-toggle="pill" href="#v-pills-dtg2" role="tab" aria-controls="v-pills-dtg2" aria-selected="false">dt group 2</a>
+                                <a class="nav-link" id="v-pills-dtg3-tab" data-toggle="pill" href="#v-pills-dtg3" role="tab" aria-controls="v-pills-dtg3" aria-selected="false">dt group 3</a>
+                                <a class="nav-link" id="v-pills-dtg4-tab" data-toggle="pill" href="#v-pills-dtg4" role="tab" aria-controls="v-pills-dtg4" aria-selected="false">dt group 4</a>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <!-- loop here to create Default Team user name group membership lists -->
+                                <div class="tab-pane fdte show active" id="v-pills-dtg1" role="tabpanel" aria-labelledby="v-pills-dtg1-tab">dt group 1 details</div>
+                                <div class="tab-pane fdte" id="v-pills-dtg2" role="tabpanel" aria-labelledby="v-pills-dtg2-tab">dt group 2 details</div>
+                                <div class="tab-pane fdte" id="v-pills-dtg3" role="tabpanel" aria-labelledby="v-pills-dtg3-tab">dt group 3 details</div>
+                                <div class="tab-pane fdte" id="v-pills-dtg4" role="tabpanel" aria-labelledby="v-pills-dtg4-tab">dt group 4 details</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="col"></div>
+</div>
